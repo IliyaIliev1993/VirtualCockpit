@@ -46,7 +46,7 @@ int main()
     textureObject.LoadFromFile("Resources/bgr.png");
     
     Texture textureTest;
-    textureTest.LoadFromFile("Resources/square.png");
+    textureTest.LoadFromFile("Resources/water.png");
     
     Font globalFont;
     Font fontOff;
@@ -71,7 +71,7 @@ int main()
         gRenderer.DrawPicture(textureObject, 0.0f, 0.0f, 0.0f, shaderTexture);
         
         //MainDraw
-        middleMenuObject.Draw(shaderTexture, shaderText);
+        middleMenuObject.Draw(shaderTexture, shaderText, shaderLines);
         
         //TEXT COORDS
         std::string textCoordsGlobal = "X: " + std::to_string(globalX) + " Y: " + std::to_string(globalY);
@@ -82,38 +82,6 @@ int main()
 
         globalFont.DrawText(textCoords, 0, 100, 1.0f, shaderText);
         globalFont.DrawText(textCoordsKMH, 950, 100, 1.0f, shaderText);
-        
-        //Petrol Meter
-        fontOff.SetColor(1.0f,0.0f,0.0f,1.0f);
-        fontOff.DrawText("R", 1046.5f, 894.0f, 0.6f, shaderText); //R
-        
-        gRenderer.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
-        gRenderer.DrawSquare(1070.5f, 876.5, 0.0f, 3.0f, 10.0f, shaderLines);//Tick after R (red)
-        
-        gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
-        gRenderer.DrawSquare(1112.0f, 876.5, 0.0f, 3.0f, 16.0f, shaderLines);//Tick after R white
-        gRenderer.DrawSquare(1236.5f, 876.5, 0.0f, 3.0f, 16.0f, shaderLines);//Tick after 1/2
-        
-        fontOff.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
-        fontOff.DrawText("1/2", 1154.0f, 894.0f, 0.6f, shaderText);//1/2
-        
-        fontOff.DrawText("1/1", 1276.5f, 894.0f, 0.6f, shaderText);//1/1
-        
-//        //Meters
-//        gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
-//        
-//        int nMinCounter = 0;
-//        int nMaxCounter = 12;
-//        for(unsigned int i = nMinCounter; nMinCounter <= nMaxCounter; i++)
-//        {
-//            float fMeterCounterOffset = 18.5f;
-//            gRenderer.DrawSquare(1055.0f + fMeterCounterOffset * i, 865.0f, 0.0f, 16.0f, 3.0f, shaderLines);
-//        }
-//        
-//        if(nMaxCounter > nMinCounter)
-//        {
-//            nMaxCounter--;
-//        }
 
         glfwSwapBuffers(gRenderer.GetWindow());
         glfwPollEvents();

@@ -34,7 +34,11 @@ private:
     Texture m_textureLogo;
     Texture m_textureLine;
     Texture m_textureSquare;
-    
+    Texture m_textureLogoPetrol;
+    Texture m_textureLogoWater;
+    Font m_fontNormal;
+    Font m_fontBold;
+    Font m_fontExtendedBold;
     TimerMgr m_timerStart;
     TimerMgr m_timerStop;
     TimerMgr m_timerDisappearLogo;
@@ -45,13 +49,16 @@ private:
     float m_fAlphaSquare = 0.0f;
     bool bPressedNow = false;
     
+    unsigned int m_unMaxLevelPetrol = 12;
+    unsigned int m_unMaxLevelWater = 6;
+    
 public:
     
     MiddleMenu();
     IndicatorRPM& GetIndicatorRPMObject() {return indicatorRPMObject;}
     EStatesOfMiddleMenu& GetState() {return m_eState;}
     bool LoadResources();
-    void Draw(Shader& shaderTexture, Shader& shaderFont);
+    void Draw(Shader& shaderTexture, Shader& shaderFont, Shader& shaderLines);
     void Process();
     void HandleEvent(GLFWwindow* window);
     

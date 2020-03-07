@@ -7,6 +7,7 @@
 //
 
 #include "MiddleMenu.hpp"
+const unsigned short g_usSizeOfFonts = 40;
 const unsigned short g_usTimerKeyIn = 0;
 const unsigned short g_usTimerDisappearLogo = 1;
 const unsigned short g_usTimerKeyOut = 2;
@@ -22,11 +23,16 @@ bool MiddleMenu::LoadResources()
     m_textureLogo.LoadFromFile("Resources/audi.png");
     m_textureLine.LoadFromFile("Resources/line.png");
     m_textureSquare.LoadFromFile("Resources/square.png");
+    m_textureLogoPetrol.LoadFromFile("Resources/fuel.png");
+    m_textureLogoWater.LoadFromFile("Resources/water.png");
+    m_fontNormal.SetFont("Fonts/Normal.ttf", g_usSizeOfFonts);
+    m_fontBold.SetFont("Fonts/Bold.ttf", g_usSizeOfFonts);
+    m_fontExtendedBold.SetFont("Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
     
     return true;
 }
 
-void MiddleMenu::Draw(Shader &shaderTexture, Shader &shaderFont)
+void MiddleMenu::Draw(Shader &shaderTexture, Shader &shaderFont, Shader &shaderLines)
 {
     gRenderer.SetColor(1.0f, 1.0f, 1.0f, m_fAlphaSquare);
     gRenderer.DrawPictureScaled(m_textureSquare, 352.0f, 574.5f, 0.0f, 0.9f, shaderTexture);
@@ -39,6 +45,55 @@ void MiddleMenu::Draw(Shader &shaderTexture, Shader &shaderFont)
     
     //Indicatores RPM and KMH
     indicatorRPMObject.Draw(shaderTexture, shaderFont);
+    
+    //Petrol Meter
+    m_fontBold.SetColor(1.0f,0.0f,0.0f,1.0f);
+    m_fontBold.DrawText("R", 1046.5f, 894.0f, 0.6f, shaderFont); //R
+    
+    gRenderer.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
+    gRenderer.DrawSquare(1070.5f, 876.5, 0.0f, 3.0f, 10.0f, shaderLines);//Tick after R (red)
+    
+    gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+    gRenderer.DrawSquare(1112.0f, 876.5, 0.0f, 3.0f, 16.0f, shaderLines);//Tick after R white
+    gRenderer.DrawSquare(1236.5f, 876.5, 0.0f, 3.0f, 16.0f, shaderLines);//Tick after 1/2
+    
+    m_fontBold.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+    m_fontBold.DrawText("1/2", 1154.0f, 894.0f, 0.6f, shaderFont);//1/2
+    
+    m_fontBold.DrawText("1/1", 1276.5f, 894.0f, 0.6f, shaderFont);//1/1
+    
+    //Meters Petrol
+    gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+    
+    for(unsigned int i = 0; i <= m_unMaxLevelPetrol; i++)
+    {
+        float fMeterCounterOffset = 18.5f;
+        gRenderer.DrawSquare(1055.0f + fMeterCounterOffset * i, 865.0f, 0.0f, 16.0f, 3.0f, shaderLines);
+    }
+    
+    //Petrol Logo
+    gRenderer.DrawPictureScaled(m_textureLogoPetrol, 1332.0f, 860.0f, 0.0f, 0.5f, shaderTexture);
+    
+    //Water Meter
+    gRenderer.DrawPictureScaled(m_textureLogoWater, 62.5f, 860.0f, 0.0f, 0.6f, shaderTexture);
+    m_fontBold.SetColor(1.0f,1.0f,1.0f,1.0f);
+    m_fontBold.DrawText("50", 115.5f, 894.0f, 0.6f, shaderFont); //50
+    
+    gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+    gRenderer.DrawSquare(193.0f, 876.5, 0.0f, 3.0f, 16.0f, shaderLines);//Tick after 50 white
+    m_fontBold.DrawText("90", 238.0f, 894.0f, 0.6f, shaderFont);//90
+    gRenderer.DrawSquare(312.0f, 876.5, 0.0f, 3.0f, 16.0f, shaderLines);//Tick after 90
+    m_fontBold.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
+    m_fontBold.DrawText("130", 357.0f, 894.0f, 0.6f, shaderFont);//130
+    m_fontBold.DrawText("o", 411.5f, 887.0f, 0.5f, shaderFont);//o
+    m_fontBold.DrawText("C", 424.0f, 894.0f, 0.6f, shaderFont);//C
+    
+    //Meters Water
+    for(unsigned int i = 0; i <= m_unMaxLevelWater; i++)
+    {
+        float fMeterCounterOffset = 18.5f;
+        gRenderer.DrawSquare(135.0f + fMeterCounterOffset * i, 865.0f, 0.0f, 16.0f, 3.0f, shaderLines);
+    }
 }
 
 void MiddleMenu::Process()
