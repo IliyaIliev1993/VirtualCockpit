@@ -8,6 +8,7 @@
 
 #include "MiddleMenu.hpp"
 const unsigned short g_usSizeOfFonts = 40;
+const unsigned short g_usTimerGlobal = 999;
 const unsigned short g_usTimerKeyIn = 0;
 const unsigned short g_usTimerDisappearLogo = 1;
 const unsigned short g_usTimerKeyOut = 2;
@@ -20,8 +21,10 @@ MiddleMenu::MiddleMenu()
 bool MiddleMenu::LoadResources()
 {
     indicatorRPMObject.LoadResources();
+    bcObject.LoadResources();
     m_textureLogo.LoadFromFile("Resources/audi.png");
     m_textureLine.LoadFromFile("Resources/line.png");
+    m_textureLineSmall.LoadFromFile("Resources/line_small.png");
     m_textureSquare.LoadFromFile("Resources/square.png");
     m_textureLogoPetrol.LoadFromFile("Resources/fuel.png");
     m_textureLogoWater.LoadFromFile("Resources/water.png");
@@ -34,14 +37,21 @@ bool MiddleMenu::LoadResources()
 
 void MiddleMenu::Draw(Shader &shaderTexture, Shader &shaderFont, Shader &shaderLines)
 {
+    //Up Line
     gRenderer.SetColor(1.0f, 1.0f, 1.0f, m_fAlphaSquare);
-    gRenderer.DrawPictureScaled(m_textureSquare, 352.0f, 574.5f, 0.0f, 0.9f, shaderTexture);
+    gRenderer.DrawPictureScaled(m_textureLineSmall, 399.5f, 472.5f, 0.0f, 0.8f, shaderTexture);
+    //Square
+    gRenderer.SetColor(0.0f, 0.0f, 0.0f, m_fAlphaSquare);
+    gRenderer.DrawSquare(354.5f, 475.0f, 0.0f, 720.0f, 359.5f, shaderLines);
     // Logo
     gRenderer.SetColor(1.0f, 1.0f, 1.0f, m_fAlphaStart);
     gRenderer.DrawPictureInAspectRatio(m_textureLogo, 595.0f, 520.0f, 0.0f, shaderTexture);
     
     gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
     gRenderer.DrawPictureScaled(m_textureLine, 0.5f, 835.0f, 0.0f, 1.8f, shaderTexture);
+    
+    //BoardComputer
+    bcObject.Draw(shaderTexture, shaderFont, shaderLines, m_fAlphaSquare);
     
     //Indicatores RPM and KMH
     indicatorRPMObject.Draw(shaderTexture, shaderFont);
@@ -62,15 +72,6 @@ void MiddleMenu::Draw(Shader &shaderTexture, Shader &shaderFont, Shader &shaderL
     
     m_fontBold.DrawText("1/1", 1276.5f, 894.0f, 0.6f, shaderFont);//1/1
     
-    //Meters Petrol
-    gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
-    
-    for(unsigned int i = 0; i <= m_unMaxLevelPetrol; i++)
-    {
-        float fMeterCounterOffset = 18.5f;
-        gRenderer.DrawSquare(1055.0f + fMeterCounterOffset * i, 865.0f, 0.0f, 16.0f, 3.0f, shaderLines);
-    }
-    
     //Petrol Logo
     gRenderer.DrawPictureScaled(m_textureLogoPetrol, 1332.0f, 860.0f, 0.0f, 0.5f, shaderTexture);
     
@@ -88,16 +89,108 @@ void MiddleMenu::Draw(Shader &shaderTexture, Shader &shaderFont, Shader &shaderL
     m_fontBold.DrawText("o", 411.5f, 887.0f, 0.5f, shaderFont);//o
     m_fontBold.DrawText("C", 424.0f, 894.0f, 0.6f, shaderFont);//C
     
+    //Meters Petrol
+    gRenderer.SetColor(1.0f, 1.0f, 1.0f, m_fAlphaSquare);
+    for(unsigned int i = 0; i <= m_unMaxLevelPetrol; i++)
+    {
+        float fMeterCounterOffset = 18.5f;
+        gRenderer.DrawSquare(1055.0f + fMeterCounterOffset * i, 865.0f, 0.0f, 16.0f, 3.0f, shaderLines);
+    }
+    
     //Meters Water
     for(unsigned int i = 0; i <= m_unMaxLevelWater; i++)
     {
         float fMeterCounterOffset = 18.5f;
         gRenderer.DrawSquare(135.0f + fMeterCounterOffset * i, 865.0f, 0.0f, 16.0f, 3.0f, shaderLines);
     }
+    
+    //Clock and Temperature Bottom of Middle menu
+    DrawClock(522.0f, 865.0f, shaderFont);
+    DrawTemperature(818.0f, 865.0f, shaderFont);
+}
+
+void MiddleMenu::DrawClock(float fX, float fY, Shader &shaderFont)
+{
+    time_t now = time(0);
+    tm *dateTime = localtime(&now);
+    
+    std::string sHour = std::to_string(dateTime->tm_hour);
+    std::string sMinutes = std::to_string(dateTime->tm_min);
+    if(dateTime->tm_min <= 9)
+    {
+        sMinutes = "0" + std::to_string(dateTime->tm_min);
+    }
+    std::string sClock = sHour + ":" + sMinutes;
+    
+    m_fontBold.SetColor(1.0f, 1.0f, 1.0f, 0.7f);
+    m_fontBold.DrawText(sClock, fX, fY, 0.7f, shaderFont);
+}
+
+void MiddleMenu::DrawTemperature(float fX, float fY, Shader &shaderFont)
+{
+    std::string sSign = "+";
+    std::string sDegrees = "o";
+    std::string sCelsius = "C";
+    std::string sTemp = "13.5";
+    m_fontBold.SetColor(1.0f, 1.0f, 1.0f, 0.7f);
+    m_fontBold.DrawText(sSign, fX - 17.0f, fY - 4.0f, 0.7f, shaderFont);
+    m_fontBold.DrawText(sTemp, fX, fY, 0.7f, shaderFont);
+    m_fontBold.DrawText(sDegrees, fX + 70.0f, fY - 10.0f, 0.5f, shaderFont);
+    m_fontBold.DrawText(sCelsius, fX + 82.0f, fY, 0.7f, shaderFont);
 }
 
 void MiddleMenu::Process()
 {
+    std::function<void()>callbackGlobal = [&]
+    {
+        switch (indicatorRPMObject.GetStateOfGearBox())
+        {
+            case eParking:
+            case eNeutral:
+            case eReverse:
+                fConsumptRatio = 1.0f;
+                break;
+            case eDrive:
+                fConsumptRatio = 5.0f;
+                break;
+            case eDynamic:
+                fConsumptRatio = 15.0f;
+                break;
+            default:
+                fConsumptRatio = 0.0f;
+                break;
+        }
+        if(indicatorRPMObject.GetStateOfAcceleration() != eDecelerating)
+        {
+            float fCurrentConsumpt = (indicatorRPMObject.GetRPM() * indicatorRPMObject.GetRPM()) * fConsumptRatio;
+            const float fTollerance = 10.0f;
+            
+            if(fConsumption + fTollerance >= fCurrentConsumpt)
+            {
+                fConsumption = fCurrentConsumpt;
+            }
+            else
+            {
+                fConsumption += fTollerance;
+            }
+            
+        }
+        else if(indicatorRPMObject.GetStateOfAcceleration() == eDecelerating)
+        {
+            const float fTollerance = 10.0f;
+            const float fMinChargePos = -40.0f;
+            
+            fConsumption -= fTollerance;
+            
+            if(fConsumption <= fMinChargePos)
+            {
+                fConsumption = fMinChargePos;
+            }
+        }
+        
+        bcObject.SetConsmption(fConsumption);
+    };
+    
     std::function<void()>callbackKeyIn = [&]
     {
         m_fAlphaStart = sineKeyIn.easeIn(m_timerStart.GetTimes(), 0.0f, 1.0f, 50);
@@ -122,6 +215,7 @@ void MiddleMenu::Process()
             if(m_fAlphaSquare >= 0.7f)
             {
                 m_timerDisappearLogo.Stop();
+                bcObject.SetState(eDateAndTime);
             }
         }
     };
@@ -137,10 +231,13 @@ void MiddleMenu::Process()
                 m_timerStop.Stop();
                 m_eState = eKeyOut;
                 indicatorRPMObject.SetStateOfEngine(eOff);
+                bcObject.SetState(eHide);
+                m_timerGlobal.Stop();
             }
         }
     };
     
+    m_timerGlobal.Tick(callbackGlobal);
     m_timerStart.Tick(callbackKeyIn);
     m_timerDisappearLogo.Tick(callbackDisappearLogo);
     m_timerStop.Tick(callbackKeyOut);
@@ -150,6 +247,10 @@ void MiddleMenu::KeyIn()
 {
     if(!m_timerStart.IsStarted() && m_eState == eKeyOut)
     {
+        if(!m_timerGlobal.IsStarted())
+        {
+            m_timerGlobal.Start(g_usTimerGlobal, 15);
+        }
         m_timerStart.Start(g_usTimerKeyIn, 15);
     }
 }

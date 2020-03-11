@@ -498,6 +498,7 @@ void IndicatorRPM::DecrementRPMInDrive()
 
 void IndicatorRPM::IncrementRPM()
 {
+    m_eStateOfAcceleration = eAccelerating;
     IncrementRPMInParking();
     IncrementRPMInReverse();
     IncrementRPMInNeutral();
@@ -509,6 +510,11 @@ void IndicatorRPM::DecrementRPM()
     if(m_timerStopEngine.IsStarted())
     {
         return;
+    }
+    m_eStateOfAcceleration = eDecelerating;
+    if(indicatorKMHObject.GetKMH() <= 0.0f)
+    {
+        m_eStateOfAcceleration = eReleased;
     }
 
     DecrementRPMInParking();
@@ -558,7 +564,7 @@ void IndicatorRPM::HandleEvent(GLFWwindow *window)
     //StopEngine
     if(glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS && !bPressedNow)
     {
-        if(m_eStateOfEngine == eStarted)
+        if(m_eStateOfEngine == eStarted && m_eStateOfGearbox == eParking)
         {
             StopEngine();
         }
@@ -581,7 +587,7 @@ void IndicatorRPM::HandleEvent(GLFWwindow *window)
     //Change Gear P
     if(glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS && !bPressedNow)
     {
-        if(m_eStateOfEngine == eStarted)
+        if(m_eStateOfEngine == eStarted && m_eStateOfGearbox != eDynamic)
         {
             ChangeGear(eParking);
         }
@@ -593,7 +599,7 @@ void IndicatorRPM::HandleEvent(GLFWwindow *window)
     //Change Gear R
     if(glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && !bPressedNow)
     {
-        if(m_eStateOfEngine == eStarted)
+        if(m_eStateOfEngine == eStarted && m_eStateOfGearbox != eDynamic)
         {
             ChangeGear(eReverse);
         }
@@ -605,7 +611,7 @@ void IndicatorRPM::HandleEvent(GLFWwindow *window)
     //Change Gear N
     if(glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS && !bPressedNow)
     {
-        if(m_eStateOfEngine == eStarted)
+        if(m_eStateOfEngine == eStarted && m_eStateOfGearbox != eDynamic)
         {
             ChangeGear(eNeutral);
         }

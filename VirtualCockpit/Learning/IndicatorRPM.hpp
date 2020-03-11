@@ -36,6 +36,12 @@ enum EStatesOfGearbox
     eDynamic
 };
 
+enum EStatesOfAcceleration
+{
+    eReleased,
+    eAccelerating,
+    eDecelerating
+};
 class IndicatorRPM
 {
     
@@ -57,6 +63,7 @@ private:
     
     EStatesOfRPM m_eStateOfEngine = eOff;
     EStatesOfGearbox m_eStateOfGearbox = eParking;
+    EStatesOfAcceleration m_eStateOfAcceleration = eReleased;
     
     const float m_fMinPosNeedle = -135.0f;
     const float m_fMaxPosNeedle = 135.0f;
@@ -82,6 +89,8 @@ public:
     IndicatorRPM();
     IndicatorKMH& GetKMHObject() {return indicatorKMHObject;}
     EStatesOfRPM& GetStateOfEngine() {return m_eStateOfEngine;}
+    EStatesOfGearbox& GetStateOfGearBox(){return m_eStateOfGearbox;}
+    EStatesOfAcceleration& GetStateOfAcceleration(){return m_eStateOfAcceleration;}
     void SetStateOfEngine(EStatesOfRPM eState);
     float GetRPM() {return m_fRPM;}
     bool LoadResources();

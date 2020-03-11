@@ -20,6 +20,7 @@
 #include "Sine.h"
 
 #include "MiddleMenu.hpp"
+#include <ctime>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -46,7 +47,7 @@ int main()
     textureObject.LoadFromFile("Resources/bgr.png");
     
     Texture textureTest;
-    textureTest.LoadFromFile("Resources/water.png");
+    textureTest.LoadFromFile("Resources/battery.png");
     
     Font globalFont;
     Font fontOff;
@@ -62,6 +63,7 @@ int main()
         gTimerProcess.Process();
         middleMenuObject.Process();
         middleMenuObject.GetIndicatorRPMObject().Process();
+        middleMenuObject.GetBoardComputerObject().Process();
         
         processInput(gRenderer.GetWindow());
         gRenderer.ClearColor();
@@ -82,6 +84,8 @@ int main()
 
         globalFont.DrawText(textCoords, 0, 100, 1.0f, shaderText);
         globalFont.DrawText(textCoordsKMH, 950, 100, 1.0f, shaderText);
+        
+        gRenderer.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
         glfwSwapBuffers(gRenderer.GetWindow());
         glfwPollEvents();
@@ -97,6 +101,7 @@ void processInput(GLFWwindow *window)
 {
     middleMenuObject.HandleEvent(window);
     middleMenuObject.GetIndicatorRPMObject().HandleEvent(window);
+    middleMenuObject.GetBoardComputerObject().HandleEvent(window);
     
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);

@@ -18,6 +18,7 @@
 #include "Sine.h"
 
 #include "IndicatorRPM.hpp"
+#include "BoardComputer.hpp"
 enum EStatesOfMiddleMenu
 {
     eKeyOut,
@@ -30,9 +31,11 @@ class MiddleMenu
 private:
     
     IndicatorRPM indicatorRPMObject;
+    BoardComputer bcObject;
     
     Texture m_textureLogo;
     Texture m_textureLine;
+    Texture m_textureLineSmall;
     Texture m_textureSquare;
     Texture m_textureLogoPetrol;
     Texture m_textureLogoWater;
@@ -42,6 +45,7 @@ private:
     TimerMgr m_timerStart;
     TimerMgr m_timerStop;
     TimerMgr m_timerDisappearLogo;
+    TimerMgr m_timerGlobal;
     Sine sineKeyIn;
     
     EStatesOfMiddleMenu m_eState = eKeyOut;
@@ -52,11 +56,16 @@ private:
     unsigned int m_unMaxLevelPetrol = 12;
     unsigned int m_unMaxLevelWater = 6;
     
+    float fConsumptRatio = 0.0f;
+    float fConsumption = 0.0f;
+    
 public:
     
     MiddleMenu();
     IndicatorRPM& GetIndicatorRPMObject() {return indicatorRPMObject;}
+    BoardComputer& GetBoardComputerObject() {return bcObject;}
     EStatesOfMiddleMenu& GetState() {return m_eState;}
+    
     bool LoadResources();
     void Draw(Shader& shaderTexture, Shader& shaderFont, Shader& shaderLines);
     void Process();
@@ -64,6 +73,8 @@ public:
     
     void KeyIn();
     void KeyOut();
+    void DrawClock(float fX, float fY, Shader& shaderFont);
+    void DrawTemperature(float fX, float fY, Shader& shaderFont);
     
 };
 
