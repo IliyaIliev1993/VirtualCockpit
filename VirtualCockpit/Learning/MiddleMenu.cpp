@@ -98,7 +98,7 @@ void MiddleMenu::Draw(Shader &shaderTexture, Shader &shaderFont, Shader &shaderL
     }
     
     //Meters Water
-    for(unsigned int i = 0; i <= m_unMaxLevelWater; i++)
+    for(unsigned int i = 0; i <= m_nCurrentWaterLevel; i++)
     {
         float fMeterCounterOffset = 18.5f;
         gRenderer.DrawSquare(135.0f + fMeterCounterOffset * i, 865.0f, 0.0f, 16.0f, 3.0f, shaderLines);
@@ -188,7 +188,16 @@ void MiddleMenu::Process()
             }
         }
         
-        bcObject.SetConsmption(fConsumption);
+        if(indicatorRPMObject.GetStateOfEngine() != eReadyForStart)
+        {
+            bcObject.SetConsmption(fConsumption);
+            bcObject.SetAfterStart(indicatorRPMObject.GetKMHObject().GetKMH());
+            
+            if(m_timerGlobal.GetTimes() % 100 == 0)
+            {
+                bcObject.SetCoolantTemp(m_nCurrentWaterLevel);
+            }
+        }
     };
     
     std::function<void()>callbackKeyIn = [&]

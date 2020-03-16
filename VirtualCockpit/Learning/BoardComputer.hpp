@@ -41,6 +41,28 @@ private:
     
     EStatesOfBoardComputer m_eStateOfBoardComputer = eHide;
     
+    const float m_fMaxConsumption = 40.0f;
+    float m_fInstantConsumpt = 0.0f;
+    float m_fInstantConsumptMemory = 0.0f;
+    unsigned int m_nCyclesConsumpt = 0;
+    std::string m_sInstantConsumtion = "0";
+    
+    int m_nKM = 0;
+    std::string m_sInstantKM = "0";
+    std::string m_sKMAverage = "0 km/h";
+    int m_nMeters = 0;
+    int m_nMetersHundreds = 0;
+    int m_nMetersInSeconds = 0;
+    int m_nKMAverage = 0;
+    unsigned int m_nSeconds = 1;
+    
+    int m_nWaterTemp = 0;
+    int m_nOilTemp = 0;
+    int m_nOilPressure = 0;
+    float m_fBoost = 0.0f;
+    const float m_fMaxBoost = 200.0f;
+    const int m_nMaxOilTemp = 130;
+    
     float fGlobalY = 0.0f;
     float m_fConsumtion = 0.0f;
     float m_fInitialPosLabel = 0.0f;
@@ -63,6 +85,8 @@ public:
     void DrawCursor(float fX, float fY, Shader& shaderTexture, Shader& shaderFont, Shader& shaderLines, float fAlpha);
     
     void SetConsmption(float fConsumption);
+    void SetAfterStart(float fKMH);
+    void SetCoolantTemp(int &nCoolantTemp);
 };
 
 #endif /* BoardComputer_hpp */

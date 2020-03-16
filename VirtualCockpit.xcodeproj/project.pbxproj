@@ -18,6 +18,7 @@
 		B12C554E2401A7DA00F07134 /* Cubic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12C55422401A7DA00F07134 /* Cubic.cpp */; };
 		B12C554F2401A7DA00F07134 /* Quart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12C55432401A7DA00F07134 /* Quart.cpp */; };
 		B12C55502401A7DA00F07134 /* Elastic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12C55442401A7DA00F07134 /* Elastic.cpp */; };
+		B12E09252418FAE6000BCA8C /* BoardComputer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B12E09242418FAE6000BCA8C /* BoardComputer.cpp */; };
 		B142317C24029E4F00B10969 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B142317B24029E4F00B10969 /* libfreetype.6.dylib */; };
 		B142317D24029E4F00B10969 /* libfreetype.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = B142317B24029E4F00B10969 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B14CFABE2402E58700CC76BD /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B14CFABC2402E58700CC76BD /* Font.cpp */; };
@@ -81,6 +82,8 @@
 		B12C55432401A7DA00F07134 /* Quart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quart.cpp; sourceTree = "<group>"; };
 		B12C55442401A7DA00F07134 /* Elastic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elastic.cpp; sourceTree = "<group>"; };
 		B12C55452401A7DA00F07134 /* Elastic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elastic.h; sourceTree = "<group>"; };
+		B12E09232418FAE6000BCA8C /* BoardComputer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoardComputer.hpp; sourceTree = "<group>"; };
+		B12E09242418FAE6000BCA8C /* BoardComputer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardComputer.cpp; sourceTree = "<group>"; };
 		B141B38B23F5C6220034D631 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		B141B39023F5C7780034D631 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		B141B39823F5CB900034D631 /* fragment_shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment_shader.fs; sourceTree = "<group>"; };
@@ -1105,6 +1108,8 @@
 		B1E3E25724044D6900ADC962 /* Learning */ = {
 			isa = PBXGroup;
 			children = (
+				B12E09242418FAE6000BCA8C /* BoardComputer.cpp */,
+				B12E09232418FAE6000BCA8C /* BoardComputer.hpp */,
 				B1D4F01A2405AAC4000B39E5 /* IndicatorRPM.cpp */,
 				B1D4F01B2405AAC4000B39E5 /* IndicatorRPM.hpp */,
 				B1FE8DCC2408459700C57A4A /* IndicatorKMH.cpp */,
@@ -1194,6 +1199,7 @@
 				B12C55482401A7DA00F07134 /* Circ.cpp in Sources */,
 				B152815023F1DE110098DECD /* TimerMgr.cpp in Sources */,
 				B1FE8DCE2408459700C57A4A /* IndicatorKMH.cpp in Sources */,
+				B12E09252418FAE6000BCA8C /* BoardComputer.cpp in Sources */,
 				B12C554D2401A7DA00F07134 /* Sine.cpp in Sources */,
 				B1D4F01C2405AAC4000B39E5 /* IndicatorRPM.cpp in Sources */,
 				B14CFABE2402E58700CC76BD /* Font.cpp in Sources */,

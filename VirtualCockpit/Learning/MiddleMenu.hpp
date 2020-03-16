@@ -55,6 +55,7 @@ private:
     
     unsigned int m_unMaxLevelPetrol = 12;
     unsigned int m_unMaxLevelWater = 6;
+    int m_nCurrentWaterLevel = 0;
     
     float fConsumptRatio = 0.0f;
     float fConsumption = 0.0f;

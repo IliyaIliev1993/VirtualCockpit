@@ -274,7 +274,7 @@ void IndicatorRPM::IncrementRPMInDrive()
         {
             m_bTimeToChangeGear = true;
             m_nGearNumber += 1;
-            m_sGearIndicator = "D" + std::to_string(m_nGearNumber);
+            m_sGearIndicator = "S" + std::to_string(m_nGearNumber);
         }
         else if(m_fRPM >= 7.5f && m_nGearNumber == 7)
         {
@@ -440,7 +440,7 @@ void IndicatorRPM::DecrementRPMInDrive()
         {
             m_bTimeToChangeGear = true;
             m_nGearNumber -= 1;
-            m_sGearIndicator = "D" + std::to_string(m_nGearNumber);
+            m_sGearIndicator = "S" + std::to_string(m_nGearNumber);
         }
         
         m_fAngle = m_fMinPosNeedle + (m_fOffsetBetweenTicks * m_fRPM);
@@ -547,7 +547,7 @@ void IndicatorRPM::ChangeGear(EStatesOfGearbox eStateToChange)
             break;
             
         case eDynamic:
-            m_sGearIndicator = "D" + std::to_string(m_nGearNumber);
+            m_sGearIndicator = "S" + std::to_string(m_nGearNumber);
             m_sGearBoxMode = "DYNAMIC";
             m_bChangeMinRPM = true;
             break;
