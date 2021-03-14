@@ -9,17 +9,16 @@
 #include <iostream>
 #include "glad.h"
 #include "glfw3.h"
-#include "TimerProcess.hpp"
+#include "TimerMgr/TimerProcess.hpp"
 #include "shader.hpp"
-#include "Texture.hpp"
+#include "Texture/Texture.hpp"
 #include "GLFW/glm/glm.hpp"
 #include "GLFW/glm/gtc/matrix_transform.hpp"
 #include "GLFW/glm/gtc/type_ptr.hpp"
 #include "Renderer/Renderer.hpp"
 #include "Font/Font.hpp"
-#include "Sine.h"
 
-#include "MiddleMenu.hpp"
+#include "Learning/MiddleMenu.hpp"
 #include <ctime>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -36,26 +35,26 @@ int main()
     gRenderer.InitSystem();
     glfwSetFramebufferSizeCallback(gRenderer.GetWindow(), framebuffer_size_callback);
     
-    Shader shaderTexture("Shaders/vertex_shader.vs", "Shaders/fragment_shader.fs");
-    Shader shaderText("Shaders/vertex_shader_font.vs", "Shaders/fragment_shader_font.fs");
-    Shader shaderLines("Shaders/vertex_shader_line.vs", "Shaders/fragment_shader_line.fs");
+    Shader shaderTexture("../src/Shaders/vertex_shader.vs", "../src/Shaders/fragment_shader.fs");
+    Shader shaderText("../src/Shaders/vertex_shader_font.vs", "../src/Shaders/fragment_shader_font.fs");
+    Shader shaderLines("../src/Shaders/vertex_shader_line.vs", "../src/Shaders/fragment_shader_line.fs");
     
     gRenderer.EnableBlend();
     middleMenuObject.LoadResources();
     
     Texture textureObject;
-    textureObject.LoadFromFile("Resources/bgr.png");
+    textureObject.LoadFromFile("../src/Resources/bgr.png");
     
     Texture textureTest;
-    textureTest.LoadFromFile("Resources/battery.png");
+    textureTest.LoadFromFile("../src/Resources/battery.png");
     
     Font globalFont;
     Font fontOff;
     Font fontRMP;
     
-    globalFont.SetFont("Fonts/ExtendedBold.ttf", 40);
-    fontOff.SetFont("Fonts/Bold.ttf", 40);
-    fontRMP.SetFont("Fonts/Normal.ttf", 40);
+    globalFont.SetFont("../src/Fonts/ExtendedBold.ttf", 40);
+    fontOff.SetFont("../src/Fonts/Bold.ttf", 40);
+    fontRMP.SetFont("../src/Fonts/Normal.ttf", 40);
     
     
     while (!glfwWindowShouldClose(gRenderer.GetWindow()))

@@ -20,13 +20,13 @@ IndicatorKMH::IndicatorKMH()
 
 bool IndicatorKMH::LoadResources()
 {
-    m_textureBackground.LoadFromFile("Resources/tacho.png");
-    m_textureMarker.LoadFromFile("Resources/marker.png");
-    m_textureNeedle.LoadFromFile("Resources/needle.png");
+    m_textureBackground.LoadFromFile("../src/Resources/tacho.png");
+    m_textureMarker.LoadFromFile("../src/Resources/marker.png");
+    m_textureNeedle.LoadFromFile("../src/Resources/needle.png");
     
-    m_fontNormal.SetFont("Fonts/Normal.ttf", g_usSizeOfFonts);
-    m_fontBold.SetFont("Fonts/Bold.ttf", g_usSizeOfFonts);
-    m_fontExtendedBold.SetFont("Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
+    m_fontNormal.SetFont("../src/Fonts/Normal.ttf", g_usSizeOfFonts);
+    m_fontBold.SetFont("../src/Fonts/Bold.ttf", g_usSizeOfFonts);
+    m_fontExtendedBold.SetFont("../src/Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
     
     return true;
 }

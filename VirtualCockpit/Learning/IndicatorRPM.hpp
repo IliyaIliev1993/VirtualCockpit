@@ -10,12 +10,14 @@
 #define Indicator_hpp
 
 #include <iostream>
-#include "TimerMgr.hpp"
-#include "Texture.hpp"
-#include "Font.hpp"
-#include "Renderer.hpp"
-#include "shader.hpp"
-#include "Sine.h"
+#include <functional>
+#include <string>
+#include "../TimerMgr/TimerMgr.hpp"
+#include "../Texture/Texture.hpp"
+#include "../Font/Font.hpp"
+#include "../Renderer/Renderer.hpp"
+#include "../GLFW/shader.hpp"
+#include "Easing/Sine.h"
 #include "IndicatorKMH.hpp"
 
 enum EStatesOfRPM

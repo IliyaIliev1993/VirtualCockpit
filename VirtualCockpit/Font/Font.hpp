@@ -12,14 +12,12 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include <freetype2/ft2build.h>
-#include <freetype2/freetype/freetype.h>
 #include "glad.h"
 #include "glfw3.h"
 #include "glm.hpp"
-#include "matrix_transform.hpp"
-#include "type_ptr.hpp"
-#include "Shader.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "shader.hpp"
 
 class Font
 {

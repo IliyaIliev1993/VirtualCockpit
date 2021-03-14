@@ -1,0 +1,5 @@
+/home/ichko/workspace/VirtualCockpit/VirtualCockpit/build/CMakeFiles/edit_cache.dir
+/home/ichko/workspace/VirtualCockpit/VirtualCockpit/build/CMakeFiles/rebuild_cache.dir
+/home/ichko/workspace/VirtualCockpit/VirtualCockpit/build/CMakeFiles/Prj.dir
+/home/ichko/workspace/VirtualCockpit/VirtualCockpit/build/CMakeFiles/VirtualCockpit.dir
+/home/ichko/workspace/VirtualCockpit/VirtualCockpit/build/CMakeFiles/Glad.dir

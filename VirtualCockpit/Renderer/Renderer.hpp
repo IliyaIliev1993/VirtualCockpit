@@ -14,10 +14,10 @@
 #include "glad.h"
 #include "glfw3.h"
 #include "glm.hpp"
-#include "matrix_transform.hpp"
-#include "type_ptr.hpp"
-#include "Texture.hpp"
-#include "Shader.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "../Texture/Texture.hpp"
+#include "shader.hpp"
 
 class Renderer
 {

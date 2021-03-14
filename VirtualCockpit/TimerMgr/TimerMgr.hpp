@@ -11,9 +11,11 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <functional>
 #include <ctime>
 #include "glad.h"
 #include "glfw3.h"
+
 
 class TimerMgr
 {

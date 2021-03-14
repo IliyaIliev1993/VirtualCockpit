@@ -1,0 +1,1 @@
+/usr/bin/clang++-3.9  -g   -Wl,-rpath,'$ORIGIN' -rdynamic CMakeFiles/VirtualCockpit.dir/main.cpp.o  -o VirtualCockpit /usr/lib/x86_64-linux-gnu/libglfw.so.3.2 -lGL libGlad.a -lfreetype -lX11 -lpthread -lXrandr libPrj.a -lXi -ldl -lstdc++fs 

@@ -5,9 +5,9 @@
 //  Created by Iliya Iliev on 23.02.20.
 //  Copyright © 2020 Iliya Iliev. All rights reserved.
 //
-
+#include <ft2build.h>
+#include FT_FREETYPE_H
 #include "Font.hpp"
-
 Font::Font()
 {
     m_sFontIDMemory = "";

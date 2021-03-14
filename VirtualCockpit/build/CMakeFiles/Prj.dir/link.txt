@@ -1,0 +1,2 @@
+/usr/bin/ar qc libPrj.a  CMakeFiles/Prj.dir/Font/Font.cpp.o CMakeFiles/Prj.dir/Learning/BoardComputer.cpp.o CMakeFiles/Prj.dir/Learning/IndicatorKMH.cpp.o CMakeFiles/Prj.dir/Learning/IndicatorRPM.cpp.o CMakeFiles/Prj.dir/Learning/MiddleMenu.cpp.o CMakeFiles/Prj.dir/Learning/Easing/Sine.cpp.o CMakeFiles/Prj.dir/Renderer/Renderer.cpp.o CMakeFiles/Prj.dir/Texture/Texture.cpp.o CMakeFiles/Prj.dir/TimerMgr/TimerMgr.cpp.o CMakeFiles/Prj.dir/TimerMgr/TimerProcess.cpp.o
+/usr/bin/ranlib libPrj.a

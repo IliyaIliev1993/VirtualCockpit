@@ -20,14 +20,14 @@ IndicatorRPM::IndicatorRPM()
 
 bool IndicatorRPM::LoadResources()
 {
-    m_textureBackground.LoadFromFile("Resources/tacho.png");
-    m_textureMarker.LoadFromFile("Resources/marker.png");
-    m_textureNeedle.LoadFromFile("Resources/needle.png");
-    m_textureRsLogo.LoadFromFile("Resources/rs_logo.png");
+    m_textureBackground.LoadFromFile("../src/Resources/tacho.png");
+    m_textureMarker.LoadFromFile("../src/Resources/marker.png");
+    m_textureNeedle.LoadFromFile("../src/Resources/needle.png");
+    m_textureRsLogo.LoadFromFile("../src/Resources/rs_logo.png");
     
-    m_fontNormal.SetFont("Fonts/Normal.ttf", g_usSizeOfFonts);
-    m_fontBold.SetFont("Fonts/Bold.ttf", g_usSizeOfFonts);
-    m_fontExtendedBold.SetFont("Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
+    m_fontNormal.SetFont("../src/Fonts/Normal.ttf", g_usSizeOfFonts);
+    m_fontBold.SetFont("../src/Fonts/Bold.ttf", g_usSizeOfFonts);
+    m_fontExtendedBold.SetFont("../src/Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
     
     indicatorKMHObject.LoadResources();
     

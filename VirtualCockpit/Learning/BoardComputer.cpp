@@ -19,11 +19,11 @@ BoardComputer::BoardComputer()
 
 bool BoardComputer::LoadResources()
 {
-    m_textureLineSmall.LoadFromFile("Resources/line_small.png");
-    m_textureBattery.LoadFromFile("Resources/battery.png");
-    m_fontNormal.SetFont("Fonts/Normal.ttf", g_usSizeOfFonts);
-    m_fontBold.SetFont("Fonts/Bold.ttf", g_usSizeOfFonts);
-    m_fontExtendedBold.SetFont("Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
+    m_textureLineSmall.LoadFromFile("../src/Resources/line_small.png");
+    m_textureBattery.LoadFromFile("../src/Resources/battery.png");
+    m_fontNormal.SetFont("../src/Fonts/Normal.ttf", g_usSizeOfFonts);
+    m_fontBold.SetFont("../src/Fonts/Bold.ttf", g_usSizeOfFonts);
+    m_fontExtendedBold.SetFont("../src/Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
     
     return true;
 }

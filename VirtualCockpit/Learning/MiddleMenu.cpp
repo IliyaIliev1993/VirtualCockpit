@@ -22,15 +22,15 @@ bool MiddleMenu::LoadResources()
 {
     indicatorRPMObject.LoadResources();
     bcObject.LoadResources();
-    m_textureLogo.LoadFromFile("Resources/audi.png");
-    m_textureLine.LoadFromFile("Resources/line.png");
-    m_textureLineSmall.LoadFromFile("Resources/line_small.png");
-    m_textureSquare.LoadFromFile("Resources/square.png");
-    m_textureLogoPetrol.LoadFromFile("Resources/fuel.png");
-    m_textureLogoWater.LoadFromFile("Resources/water.png");
-    m_fontNormal.SetFont("Fonts/Normal.ttf", g_usSizeOfFonts);
-    m_fontBold.SetFont("Fonts/Bold.ttf", g_usSizeOfFonts);
-    m_fontExtendedBold.SetFont("Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
+    m_textureLogo.LoadFromFile("../src/Resources/audi.png");
+    m_textureLine.LoadFromFile("../src/Resources/line.png");
+    m_textureLineSmall.LoadFromFile("../src/Resources/line_small.png");
+    m_textureSquare.LoadFromFile("../src/Resources/square.png");
+    m_textureLogoPetrol.LoadFromFile("../src/Resources/fuel.png");
+    m_textureLogoWater.LoadFromFile("../src/Resources/water.png");
+    m_fontNormal.SetFont("../src/Fonts/Normal.ttf", g_usSizeOfFonts);
+    m_fontBold.SetFont("../src/Fonts/Bold.ttf", g_usSizeOfFonts);
+    m_fontExtendedBold.SetFont("../src/Fonts/ExtendedBold.ttf", g_usSizeOfFonts);
     
     return true;
 }
